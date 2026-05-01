@@ -1,3 +1,16 @@
+# raw data (too large for git)
 /data/data_raw
 /data/filtered_data
 /data/processed/reviews_enriched_v1.parquet
+
+# generated outputs (reproducible from scripts)
+src/*/outputs/
+!src/*/outputs/.gitkeep
+
+# python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# archive folder (one-time or legacy files)
+/archive/
