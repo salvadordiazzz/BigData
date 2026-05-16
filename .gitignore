@@ -14,3 +14,7 @@ __pycache__/
 
 # archive folder (one-time or legacy files)
 /archive/
+
+# deliverables: generated reports + slides + builder scripts
+# (kept locally for grading; not part of the technical pipeline)
+/deliverables/
