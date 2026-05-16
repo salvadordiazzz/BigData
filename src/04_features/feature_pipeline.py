@@ -112,13 +112,18 @@ def main() -> None:
     sp.save_npz(OUT_DIR / "X_business_text.npz",     X_text)
     sp.save_npz(OUT_DIR / "X_business_combined.npz", X_combined)
 
-    (pd.DataFrame({"business_id": biz_ids.values})
-       .merge(df[["business_id", "business_name", "categories_list"]]
-              .drop_duplicates("business_id"), on="business_id", how="left")
-       .assign(primary_category=lambda r: r["categories_list"].apply(
-           lambda x: list(x)[0] if isinstance(x, (list, np.ndarray)) and len(x) > 0 else "Unknown"))
-       [["business_id", "business_name", "primary_category"]]
-       .to_parquet(OUT_DIR / "business_index.parquet", index=False))
+    index = (pd.DataFrame({"business_id": biz_ids.values})
+               .merge(df[["business_id", "business_name", "categories_list"]]
+                      .drop_duplicates("business_id"), on="business_id", how="left")
+               .assign(primary_category=lambda r: r["categories_list"].apply(
+                   lambda x: list(x)[0] if isinstance(x, (list, np.ndarray)) and len(x) > 0 else "Unknown"))
+               [["business_id", "business_name", "primary_category"]])
+    index.to_parquet(OUT_DIR / "business_index.parquet", index=False)
+
+    feat_cols = num_cols + cat_cols
+    pd.concat([index.reset_index(drop=True),
+               pd.DataFrame(X_dense, columns=feat_cols)], axis=1) \
+      .to_parquet(OUT_DIR / "business_features.parquet", index=False)
 
     with open(OUT_DIR / "feature_names.json", "w") as f:
         json.dump({"numeric_temporal": num_cols, "categorical": cat_cols,
