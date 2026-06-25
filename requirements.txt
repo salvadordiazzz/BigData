@@ -9,3 +9,5 @@ python-docx>=1.1
 python-pptx>=1.0
 implicit>=0.7
 lightfm>=1.17
+networkx>=3.0
+python-louvain>=0.16
