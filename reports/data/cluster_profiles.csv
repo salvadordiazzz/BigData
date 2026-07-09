@@ -1,0 +1,9 @@
+method,cluster,n_businesses,mean_business_stars,mean_log_review_count,mean_mean_review_stars,mean_std_review_stars,mean_mean_useful,mean_days_since_last,mean_reviews_per_year_recent,top_categories
+KMeans,0,2990,0.203,1.001,0.204,0.014,-0.097,-0.529,0.375,Restaurants (458); Food (184); Nightlife (107)
+KMeans,1,3801,0.806,-0.227,0.818,-0.561,-0.189,-0.301,0.058,Restaurants (401); Food (206); Beauty & Spas (149)
+KMeans,2,1862,-0.105,-0.372,-0.126,-0.063,0.156,1.685,-0.338,Restaurants (322); Food (134); Shopping (79)
+KMeans,3,3006,-1.158,-0.477,-1.161,0.734,0.185,-0.136,-0.236,Restaurants (330); Food (115); Home Services (109)
+KMeans,4,12,0.574,-0.164,0.522,-0.008,13.615,-0.534,-0.139,Pet Training (1); Public Services & Government (1); Skin Care (1)
+DBSCAN,-1,366,-0.391,-0.236,-0.462,-0.078,2.453,0.202,0.633,Restaurants (29); Food (14); Nightlife (13)
+DBSCAN,0,11300,0.012,0.006,0.015,0.003,-0.079,-0.006,-0.027,Restaurants (1482); Food (625); Beauty & Spas (343)
+DBSCAN,1,5,0.611,3.867,0.561,-0.486,-0.541,-0.828,13.605,Mediterranean (1); British (1); Lounges (1)

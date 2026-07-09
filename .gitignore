@@ -18,3 +18,6 @@ __pycache__/
 # deliverables: generated reports + slides + builder scripts
 # (kept locally for grading; not part of the technical pipeline)
 /deliverables/
+
+# reports/ is tracked in git: curated figures, metric summaries, and plans
+# (no exclusions needed — everything under reports/ is committed)

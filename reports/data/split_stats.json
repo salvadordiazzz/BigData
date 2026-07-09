@@ -1,0 +1,15 @@
+{
+  "total_reviews": 592618,
+  "train_reviews": 397866,
+  "val_reviews": 61966,
+  "test_reviews": 131746,
+  "train_users": 36922,
+  "val_eval_users": 31699,
+  "test_eval_users": 36833,
+  "train_businesses": 11328,
+  "candidate_pool_size": 3572,
+  "min_user_reviews": 5,
+  "val_fraction": 0.1,
+  "test_fraction": 0.2,
+  "hidden_gem_cluster": 1
+}

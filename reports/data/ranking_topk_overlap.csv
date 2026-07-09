@@ -1,0 +1,4 @@
+pair,intersection,jaccard
+Top-50 PageRank vs Popularity,31,0.4493
+Top-50 PageRank vs Router,8,0.087
+Top-50 Popularity vs Router,6,0.0638

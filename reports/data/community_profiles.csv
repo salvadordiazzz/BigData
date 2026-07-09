@@ -1,0 +1,8 @@
+community,n_businesses,mean_pagerank,mean_degree,dominant_cluster,cluster_dominance,top_categories
+3,1158,0.000226,122.12,1,0.553,Restaurants (219); Food (94); Nightlife (36)
+5,998,0.000198,115.88,0,0.568,Restaurants (155); Food (75); Nightlife (39)
+4,887,0.000301,176.84,0,0.572,Restaurants (147); Food (48); Nightlife (46)
+2,837,0.000131,52.79,0,0.584,Restaurants (126); Food (69); Pizza (23)
+6,549,0.000188,105.55,0,0.528,Restaurants (102); Food (51); Chinese (25)
+0,355,0.000108,43.18,0,0.544,Restaurants (58); Food (30); Nightlife (17)
+1,129,0.000172,101.41,0,0.527,Restaurants (21); Food (12); Nightlife (7)

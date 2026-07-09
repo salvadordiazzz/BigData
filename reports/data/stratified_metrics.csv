@@ -1,0 +1,9 @@
+model,tier,k,n_users,precision_at_k,recall_at_k,ndcg_at_k,map_at_k,hit_rate
+als_tuned,cold,10,9040,0.0073,0.0612,0.0324,0.0221,0.0716
+als_tuned,mid,10,3666,0.0117,0.0645,0.0376,0.0231,0.1116
+als_tuned,warm,10,1781,0.0246,0.0635,0.0473,0.0244,0.2066
+als_tuned,overall,10,14487,0.0105,0.0623,0.0355,0.0227,0.0983
+fallback_router,cold,10,9040,0.0074,0.0624,0.0333,0.0228,0.0728
+fallback_router,mid,10,3666,0.0119,0.067,0.0391,0.0241,0.114
+fallback_router,warm,10,1781,0.0246,0.0635,0.0473,0.0244,0.2066
+fallback_router,overall,10,14487,0.0107,0.0637,0.0365,0.0234,0.0997

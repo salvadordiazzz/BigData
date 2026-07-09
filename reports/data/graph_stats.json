@@ -1,0 +1,16 @@
+{
+  "n_nodes": 4913,
+  "n_edges": 272230,
+  "density": 0.02256,
+  "n_components": 1,
+  "largest_cc_size": 4913,
+  "largest_cc_fraction": 1.0,
+  "mean_degree": 110.82,
+  "median_degree": 18,
+  "max_degree": 2806,
+  "mean_edge_weight": 5.53,
+  "max_edge_weight": 197,
+  "min_shared_users": 3,
+  "positive_star_threshold": 4,
+  "max_biz_per_user": 200
+}
