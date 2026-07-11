@@ -21,11 +21,19 @@ Full step-by-step instructions: **[RUNBOOK.md](RUNBOOK.md)**
 After running the full pipeline (stages 01–08 per the runbook):
 
 ```bash
+# Interactive Streamlit app (recommended)
+streamlit run app.py                    # opens at http://localhost:8501
+
+# CLI demo
 python demo.py                          # 3 example users (cold / mid / warm)
 python demo.py --user <user_id>         # personalised recommendations
 python demo.py --user <user_id> -k 5   # top-5
 python demo.py --list-users             # print sample user IDs
 ```
+
+The Streamlit app has two modes:
+- **Build My Profile** — pick categories you enjoy → content-based SVD recommendations
+- **Explore Real Users** — browse test-set users by tier → blend-router recommendations
 
 ## Repository structure
 
