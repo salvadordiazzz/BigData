@@ -34,7 +34,6 @@ HG_COMM    = 3
 # ── page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="Hidden-Gem Discovery | Philadelphia",
-    page_icon="💎",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -139,8 +138,8 @@ def _render_cards(df: pd.DataFrame, all_pr: pd.Series, score_col: str = "score")
         is_c3  = (not pd.isna(com)) and int(com) == HG_COMM
         pr_pct = _pr_pct(pr, all_pr)
 
-        hg_badge  = '<span class="badge-hg">💎 Hidden Gem</span>' if is_hg else '<span class="badge-ms">Mainstream</span>'
-        c3_badge  = '<span class="badge-c3">✦ Gem Community</span>' if is_c3 else ""
+        hg_badge  = '<span class="badge-hg">Hidden Gem</span>' if is_hg else '<span class="badge-ms">Mainstream</span>'
+        c3_badge  = '<span class="badge-c3">Gem Community</span>' if is_c3 else ""
         pr_badge  = f'<span class="badge-pr">PR p{pr_pct}</span>' if pr_pct >= 0 else ""
 
         bar_pct = int(100 * score / max_score) if max_score > 0 else 0
@@ -217,7 +216,7 @@ def _simulate_recs(
 # ── sidebar ───────────────────────────────────────────────────────────────────
 
 with st.sidebar:
-    st.markdown("## 💎 Hidden-Gem Discovery")
+    st.markdown("## Hidden-Gem Discovery")
     st.markdown("**Philadelphia · Yelp Open Dataset**")
     st.divider()
     st.markdown(
@@ -234,12 +233,12 @@ with st.sidebar:
         "04 Features → 05 SVD → 06 K-Means\n"
         "07 Blend Router → 08 Graph Analytics"
     )
-    st.markdown("📄 [RUNBOOK.md](RUNBOOK.md) · 💻 `demo.py`")
+    st.markdown("[RUNBOOK.md](RUNBOOK.md) · `demo.py` · `app.py`")
 
 
 # ── main area ─────────────────────────────────────────────────────────────────
 
-st.markdown("# 💎 Yelp Hidden-Gem Discovery")
+st.markdown("# Yelp Hidden-Gem Discovery")
 st.markdown("*Philadelphia · Final Project Demo*")
 st.divider()
 
@@ -254,7 +253,7 @@ if missing:
 pool   = load_pool()
 all_pr = pool["pagerank"].dropna()
 
-tab1, tab2 = st.tabs(["🎭 Build My Profile", "👤 Explore Real Users"])
+tab1, tab2 = st.tabs(["Build My Profile", "Explore Real Users"])
 
 
 # ═══ TAB 1: SIMULATE ═══════════════════════════════════════════════════════════
@@ -290,7 +289,7 @@ with tab1:
             "**1.00** = ranked by PageRank (best-connected hidden gems)"
         )
 
-    if st.button("💎 Find My Hidden Gems", type="primary", use_container_width=True):
+    if st.button("Find My Hidden Gems", type="primary", use_container_width=True):
         if not selected_cats:
             st.warning("Please select at least one category.")
         else:
@@ -320,7 +319,7 @@ with tab1:
                         "3. **Discovery blend**: `score = (1-w) × cosine_sim + w × pagerank_percentile`\n"
                         "   where *w* is your discovery style slider.\n"
                         "4. **Graph enrichment**: each card shows its Louvain community. "
-                        "**✦ Gem Community** = Community 3 (55% hidden gems by Louvain detection)."
+                        "**Gem Community** = Community 3 (55% hidden gems by Louvain detection)."
                     )
 
 
@@ -353,11 +352,15 @@ with tab2:
     # Filter users
     tier_users_df = preds[preds["tier"] == tier_key].drop_duplicates("user_id")[["user_id"]].copy()
     tier_users_df["n_train"] = tier_users_df["user_id"].map(counts).fillna(0).astype(int)
-    tier_users_df = tier_users_df.sort_values("n_train").head(100)
+    tier_users_df = (
+        tier_users_df
+        .sample(n=min(300, len(tier_users_df)), random_state=42)
+        .sort_values("n_train")
+    )
 
     with col_u:
         user_options = {
-            f"{row.user_id}  ({row.n_train} reviews)": row.user_id
+            f"{row.user_id[:20]}…  —  {row.n_train} train reviews": row.user_id
             for _, row in tier_users_df.iterrows()
         }
         if not user_options:
@@ -403,7 +406,7 @@ with tab2:
                 "| Cold | ≤ 10 | 65% ALS + 20% Content + 15% Pop |\n"
                 "| Mid  | 11–30 | 65% ALS + 20% Content + 15% Pop |\n"
                 "| Warm | > 30 | 100% ALS (pure collaborative filtering) |\n\n"
-                "**💡 Why not use pure popularity for cold users?** We tried it (v1). "
+                "**Why not use pure popularity for cold users?** We tried it (v1). "
                 "NDCG@10 dropped from 0.0324 to 0.0112 — even 5-10 reviews carry enough "
                 "collaborative signal that removing it hurts. The blend keeps ALS as the "
                 "dominant signal but adds content and popularity as stabilizers."
@@ -413,5 +416,5 @@ st.divider()
 st.caption(
     "Project: Yelp Hidden-Gem Discovery · Philadelphia · Ricardo Rivas, Salvador Diaz, Joaquin Arevalo\n\n"
     "Pipeline: Ingestion → Cleaning → Join → Features → SVD → K-Means → Blend Router → Graph Analytics\n\n"
-    "Badges: 💎 Hidden Gem = Cluster 1 (PC3 K-Means) · ✦ Gem Community = Louvain Community 3 · PR = PageRank percentile"
+    "Badges: Hidden Gem = Cluster 1 (PC3 K-Means) · Gem Community = Louvain Community 3 · PR = PageRank percentile"
 )
